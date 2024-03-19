@@ -1,9 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -14,16 +9,19 @@ import java.util.Scanner;
  * 
  * Resources : 
  * https://docs.oracle.com/javase/8/docs/api/java/io/package-summary.html
- * 
+ *
+ * the java.nio
+ *  package is a valuable tool for Java developers when performance and efficiency are critical factors, particularly in network programming, handling large files, or implementing asynchronous operations. However, for simpler I/O tasks or when ease of use is a priority, the java.io package remains a solid choice.
  * 
  */
 public class InputOutput {
 
+    private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         
         // The most common way of reading user input in java is by using Scanner class. 
 
-        Scanner scanner = new Scanner(System.in);
+
         System.out.println("Enter your name :");
         String name = scanner.nextLine();
         System.out.println("Hello "+name);
@@ -54,6 +52,10 @@ public class InputOutput {
 
         readFileFromURL(url);
 
+        // here just reverse the order of below method calls, and see the diff your self.
+        saveOutPutToFileUsingPrintWriter();
+        saveOutPutToFileUsingFileWriterAndBufferedWriter();
+
         scanner.close();
 
     }
@@ -62,7 +64,6 @@ public class InputOutput {
     static void readInputFromFile(File fileName){
         try {
             Scanner scanner = new Scanner(fileName);
-
             while(scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 System.out.println(line);
@@ -91,4 +92,35 @@ public class InputOutput {
         }
     }
 
+    // there are few ways to save output in a file, below are two of them which are most commonly used.
+
+    // using print writer which again internally uses bw + fw, also you can perform the same operation using outputstreamwriter and fileoutputstream.
+    static  void saveOutPutToFileUsingPrintWriter(){
+        try(PrintWriter pw = new PrintWriter("Java/Basics/output.txt")){
+            System.out.println("Write name of your friends: ");
+            pw.write("My friends list:");
+            for (int i=0;i<=5;i++){
+                String name = scanner.nextLine();
+                pw.write(name);
+                pw.write("\n"); // new line
+            }
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    // using bufferdWriter and fileWriter
+    static void saveOutPutToFileUsingFileWriterAndBufferedWriter(){
+        // here true will prevent file writer to overrite the existing data on file.
+        try (FileWriter fw = new FileWriter("Java/Basics/output.txt", true); BufferedWriter bw = new BufferedWriter(fw);){
+            for(int i=1;i<=5;i++){
+                bw.write("Gear "+i);
+                bw.write("\n"); // new line
+                System.out.println("Hi there !!!");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

@@ -1,0 +1,21 @@
+# IDE specific directories
+**/.vscode/
+**/.idea/
+
+# Compiled class files
+**/*.class
+
+# Compiled output directories (adjust the pattern as needed)
+**/out/
+
+# Ignore log files generated during development
+**/logs/*.log
+
+# Ignore temporary files created during development
+**/tmp/*
+
+# Ignore generated documentation (adjust the pattern as needed)
+**/docs/generated/*
+
+# Ignore test coverage reports (adjust the pattern as needed)
+**/coverage/*
