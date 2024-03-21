@@ -1,5 +1,7 @@
 ### This is a readme file inside the java basics dir.
 
+> I won't be adding kid stuff like loops, datatypes, functions etc here.
+
 ## Basics
 
     - InputOutput
