@@ -151,5 +151,58 @@ class BasicMathematics{
         return originalNum == sum;
     }
 
+    /**
+     * @param num to check isPrime
+     * @return true if prime else false
+     *
+     * Resource :
+     * https://www.reddit.com/r/askmath/comments/qjrr5j/is_it_true_that_every_prime_number_is_6k1_or_6k1/
+     * Well I was not aware of this as well, till today.
+     */
+    public static boolean isPrime(int num) {
+
+        if (num <= 1) {
+            return false; // 1 or less are not prime
+        }
+        if (num <= 3) {
+            return true; // 2 and 3 are prime
+        }
+        if (num % 2 == 0 || num % 3 == 0) {
+            return false; // Divisible by 2 or 3 not prime (except 2 and 3)
+        }
+
+        for (int i = 5; i * i <= num; i += 6) {
+            if (num % i == 0 || num % (i + 2) == 0) {
+                return false; // Divisible by 6k ± 1 not prime
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean isPrimeSimple(int n){
+
+        if(n<2){
+            return false;
+        }
+
+/*
+        for(int i=2;i*i<=n;i++){
+            if (n%i==0){
+                return false;
+            }
+        }
+*/
+
+        for(int i=2;i<=Math.sqrt(n);i++){
+            if (n%i==0){
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
 
 }
