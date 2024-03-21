@@ -3,6 +3,8 @@ class BasicMathematics{
 
         countDigits(300);
         reverseNumber(146);
+        System.out.println("GCD of 8 and 12 is :"+gcdEuclidean(8,12));
+        System.out.println("GCD of 6 and 9 is :"+gcd(6,9));
     }
 
 
@@ -42,8 +44,7 @@ class BasicMathematics{
     }
 
     /**
-     * @param num : number to be reversed
-     *
+     * @param n : number to be reversed
      *  We can solve this by multiple approaches mentioned below
      *            - using while loop
      *            - using for loop
@@ -95,6 +96,36 @@ class BasicMathematics{
         int digit = num % 10;
         int numDigits = (int) Math.log10(Math.abs(num)) + 1;  // Calculate digits efficiently
         return digit * (int) Math.pow(10, numDigits - 1) + reversedRest;  // Correct order and multiplication
+    }
+
+
+    /**
+     * @param a first number
+     * @param b second number
+     * @return the gcd of a & b using Euclidean algorithm
+     * Resources :
+     * khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
+     */
+    public static int gcdEuclidean(int a, int b){
+        if(b == 0){
+            return a;
+        }
+        return gcdEuclidean(b,a%b);
+    }
+
+
+    /**
+     * @param a first number
+     * @param b second number
+     * @return gcd of number a & b.
+     */
+    public static int gcd(int a,int b){
+        while(b != 0){
+            int temp = b;
+            b = a%b;
+            a = temp;
+        }
+        return a;
     }
 
 }
