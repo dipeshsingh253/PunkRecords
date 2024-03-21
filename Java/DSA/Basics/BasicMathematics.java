@@ -3,8 +3,9 @@ class BasicMathematics{
 
         countDigits(300);
         reverseNumber(146);
-        System.out.println("GCD of 8 and 12 is :"+gcdEuclidean(8,12));
-        System.out.println("GCD of 6 and 9 is :"+gcd(6,9));
+        System.out.println("GCD of 8 and 12 is: "+gcdEuclidean(8,12));
+        System.out.println("GCD of 6 and 9 is: "+gcd(6,9));
+        System.out.println("Is 153 an Armstrong Number?: "+isArmstrongNumber(153));
     }
 
 
@@ -127,5 +128,28 @@ class BasicMathematics{
         }
         return a;
     }
+
+    /**
+     * @param num to verify for armstrongNumber
+     * @return true if the number is an armstrongNumber else false
+     * There are other ways that you can try to implement or explore on your own :
+     * - recursion
+     * - logarithmic
+     * - streams java
+     */
+    public static boolean isArmstrongNumber(int num) {
+        int originalNum = num;
+        int numberOfDigits = String.valueOf(num).length();
+        int sum = 0;
+
+        while (num > 0) {
+            int digit = num % 10;
+            sum += Math.pow(digit, numberOfDigits);
+            num /= 10;
+        }
+
+        return originalNum == sum;
+    }
+
 
 }
