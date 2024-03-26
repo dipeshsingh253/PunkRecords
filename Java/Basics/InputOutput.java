@@ -78,7 +78,9 @@ public class InputOutput {
     static void readFileFromURL(String url){
         try{
             URL fileUrl = new URL(url);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fileUrl.openStream()));
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(fileUrl.openStream())
+            );
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -121,6 +123,5 @@ public class InputOutput {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
