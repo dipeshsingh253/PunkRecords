@@ -16,8 +16,19 @@ def reading_remote_file(url):
         print(f"An erro occured {e} while fetching the data")
 
 
+def read_local_file(filename):
+    with open(filename, "r") as file:
+        content = file.read()
+        print(content)
 
 
-standard_inout_example()
-url = "https://raw.githubusercontent.com/dipeshsingh253/PunkRecords/main/README.md"
-reading_remote_file(url)
+def write_local_file(filename, output):
+    with open(filename,"a") as file:    # here "w" : write-mode and "a" : append-mode
+        file.write(output)
+
+
+# standard_inout_example()
+# url = "https://raw.githubusercontent.com/dipeshsingh253/PunkRecords/main/README.md"
+# reading_remote_file(url)
+read_local_file("input.txt")
+write_local_file("input.txt", "is this gonna rewrite the file or just append the text to it.")
