@@ -22,7 +22,14 @@ def new_topic(request,pk):
         form = NewTopicForm(request.POST)
         if form.is_valid():
             topic = form.save(commit=False)
-            print(topic.id)
+            topic.board = board
+            topic.starter = user
+            topic.save()
+            post = Post.objects.create(
+                message=form.cleaned_data.get('message'),
+                topic=topic,
+                created_by=user
+            )
             return redirect('board_topics', pk=pk)
     else:
         form = NewTopicForm()
