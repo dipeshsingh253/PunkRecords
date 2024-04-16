@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     
     'widget_tweaks',
 
-    'boards'
+    'boards',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
