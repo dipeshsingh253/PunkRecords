@@ -6,6 +6,7 @@ class BasicMathematics{
         System.out.println("GCD of 8 and 12 is: "+gcdEuclidean(8,12));
         System.out.println("GCD of 6 and 9 is: "+gcd(6,9));
         System.out.println("Is 153 an Armstrong Number?: "+isArmstrongNumber(153));
+
     }
 
 
