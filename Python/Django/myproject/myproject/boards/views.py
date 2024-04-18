@@ -18,7 +18,7 @@ def board_topics(request, pk):
 @login_required
 def new_topic(request,pk):
     board = get_object_or_404(Board, pk=pk)
-    user = User.objects.first()
+    user = request.user
 
     if request.method == 'POST':
         form = NewTopicForm(request.POST)
@@ -27,7 +27,7 @@ def new_topic(request,pk):
             topic.board = board
             topic.starter = user
             topic.save()
-            post = Post.objects.create(
+            Post.objects.create(
                 message=form.cleaned_data.get('message'),
                 topic=topic,
                 created_by=user
